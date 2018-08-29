@@ -1,0 +1,22 @@
+---
+title: "Lesson Plan 1"
+author: "Charles Jason Tinant"
+date: "8/29/2018"
+output: html_document
+---
+
+```{r packages, eval=FALSE}
+install.packages("sf") 
+install.packages("raster") 
+install.packages("spData")
+install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/",
+                 type = "source") 
+install.packages("units")
+```
+
+```{r library}
+library("sf")          # classes and functions for vector data 
+library("raster")      # classes and functions for raster data 
+library("units")       # creates unit classes for converting data
+```
+
