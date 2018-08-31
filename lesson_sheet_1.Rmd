@@ -1,0 +1,132 @@
+---
+title: "Lesson Plan 1"
+author: "Charles Jason Tinant"
+date: "8/29/2018"
+output: html_document
+---
+
+# Engr 233/231-Elementary Surveying Lesson Sheet
+## LESSON 1 – Chapter 1 
+
+### ORIENTATION: 
+Surveying has a long history and has evolved technologically both as its own profession and in support of professions like Civil Engineering. Surveyors and Civil Engineers and scientists should use modern survey equipment, understand historical equipment and procedures, and apply mathematical relationships to surveying.
+
+### OBJECTIVES:
+1.	Understand the history of surveying, and opportunities to implement surveying techniques in engineering projects;
+2.	Review trigonometric functions;
+3.	Prepare for a taping laboratory 
+
+### READING ASSIGNMENT: 
+Ghilani and Wolf
+*Chapter 1 – Introduction:*
+Read about the history and importance of surveying & modern geomatics in sections 1.1 - 1.3, 1-5 on pages 1-8.    
+  Scan other sections of chapter 1 for useful information.  
+  
+*Chapter 6 - Distance Measurement:*
+Prepare for the first laboratory (measuring and mapping the perimeter of Area 51 using a tape) by reading sections 6.8-6.14.  
+  Scan sections 6.1-6.7 for useful information.   
+
+*Appendix B - Example Noteforms:* Plate B.1 
+
+### IN-CLASS ASSIGNMENT / HOMEWORK: 
+Work in groups of no more than three to:  
+
+1. Complete Trigonometry handouts; 
+
+2. Set up field book following Plate B.1.  
+
+3. Calculate errors and identify as either systematic or random for a theoretical taping lab with a total distance of 2,280 ft and 8 stations, assuming the following (see section 6.14 and Appendix A):
+* actual length of tape tape used is 100.004 ft,
+* temperature is 78.1 degrees Fahrenheit;
+* pull is 35.7 lb;
+* tape was not supported throughout the survey
+* alignment for one 100-ft segment of the survey was 2.00 ft from horizontal 
+* improper plumbing of -0.01 ft for 3 segments due to strong winds 
+* faulty marking on two segments estimated as -0.020 & +0.010 ft
+* a blunder of 0.100 ft by misreading a measurement.
+
+4. Calculate the error ratio and the major source of error.
+5. What could you do to eliminate the major source of error?
+
+*Due Date:* September 7, 2018
+
+### Suggested Class Schedule 
+0:00 - Class Start / Greetings & Discuss Syllabus 
+0:30 – History of Surveying  
+0:50 – Break  
+1:00 – Trig Review   
+1:50 – Break  
+2:00 – Taping laboratory preparation  
+2:50 – Class Discussion  
+
+## Taping laboratory 
+The laboratory starts at 9 AM Friday at Piya Wiconi.  Please work in teams of no more than three to measure the Area 51 building including doors and the two sheds using a tape (clockwise & anti-clockwise) & by pacing.  
+
+Survey books and engineering scales are on order and should hopefully arrive next week.
+
+*Deliverables:*
+1. Your completed survey book should look resemble Figure B.1 (Appendix) with both calculations and a map shown.  
+
+2. Your length of stride written in the field notes of your lab. 
+
+*Due Date:* September 14, 2018 
+
+```{r taping-problem, include=FALSE}
+# Calculuate errors and identify as either systematic or random for a 
+# theoretical taping lab, assuming the following
+
+# Calculations in feet.  
+# Next step is to learn to use the units package
+tape_len_std  <-  100          # ft 
+temp_std      <-   68          # deg.F 
+k_thermal     <-    0.00000645 # ft per deg.F 
+weight_tape   <-    0.0266     # lb/ft
+
+dist_tot      <- 2280          # ft 
+num_sta       <-  round(dist_tot/100) # stations 
+
+tape_len_act  <-  100.004      # ft 
+temp_air      <-   78.1        # deg.F  
+pull          <-   35.7        # lb 
+
+# incorrect length of tape error
+error_length   <- dist_tot * (tape_len_act - tape_len_std) / 
+                                    tape_len_std
+
+# temperature error 
+error_temp     <- dist_tot * k_thermal * (temp_air - temp_std)  
+
+# sag error 
+error_sag1     <- -(num_sta - 1) * (weight_tape^2 * tape_len_act^3) / 
+                      (24 * pull^2)
+
+error_sag2     <- -(weight_tape^2 * 80^3) / 
+                      (24 * pull^2) # not a full length 
+
+error_sag      <- error_sag1 + error_sag2
+
+# horizontal alignment 
+dist_vert      <-    2.00  # ft  
+
+dist_horiz     <- sqrt(tape_len_act^2 - dist_vert^2)
+
+error_align    <- dist_horiz - tape_len_act
+
+# plumbing errors
+error_plumb    <-   -0.01 * 3 # est for 3 segments due to strong winds 
+
+# marking errors 
+error_mark     <-   -0.020 + 0.010 # ft
+error_blunder  <-    0.100   # ft by misreading a measurement.
+
+# calculate total error and error ratio
+error_total    <- error_length + error_temp + error_sag + 
+                    error_align + error_plumb + error_mark + 
+                    error_blunder
+
+error_ratio    <- error_total / dist_tot # ft per ft 
+
+
+
+```
+
