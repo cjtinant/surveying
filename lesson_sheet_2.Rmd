@@ -1,0 +1,152 @@
+---
+title: "Lesson Plan 2"
+author: "Charles Jason Tinant"
+date: "8/29/2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Engr 233/231-Elementary Surveying Lesson Sheet
+## Lesson 2 – Chapters 2 & 6 
+
+### Updates
+Homework 1 is due Friday.  Please upload the trigonometry review to the Google Scholar website.  You will need to use your olc account to register for class.  The class code for surveying is **2yh326**. 
+
+### Orientation: 
+Surveying has a long history and has evolved technologically both as its own profession and in support of professions  Surveyors are required to function comfortably in several different systems of linear and angular measurement. Additionally, calculations have to be made using information from both US customary and System International data sources. Finally, surveyors need to be able to use data from historic sources by converting to modern measurement and reporting systems.
+
+### Objectives:
+1.	Students should be able calculate and convert data from US customary and System International data;
+
+2. Convert historic land measurement data for distances and acreages to current systems.
+
+### Reading Assignment:  
+Ghilani and Wolf  
+*Chapter 2 – Units, and Significant Figures*   
+Read about units of measurement used in modern & historical surveying & geomatics in sections 2.2 - 2.3;  
+read about significant figures & rounding in sections 2.4 - 2.5;  
+read about fieldbooks & fieldnotes in sections 2.6 - 2.11 & 2.15.  
+Scan 2.12 - 2.14 on digital notes.  
+  
+*Chapter 6 - Distance Measurement:*   
+Prepare for the second laboratory (measuring and mapping the perimeter of Area 51 using a total station) by reading sections 6.15-6.22.  
+  
+### In-Class Assignment: 
+Work in groups of no more than three to:  
+
+1. Calculate errors for a distance measurement survey using a metal tape.  The survey has a total distance of 2,280 ft (see below, section 6.14 and Appendix A).  
+
+2. Calculate the error ratio.  
+
+3. Identify the major source of error. What could you do to eliminate this source of error?   
+
+4. Upload your work to the Google Scholar website.  
+
+5. Set up field book for an EDM survey following Plate B.1. in the Appendix.   
+
+
+### HOMEWORK ASSIGNMENT 
+**Due Date:** September 14, 2018
+
+2.4b, 2.5b, 2.6b, 2.7a, 2.8a, 2.13b, 2.14 a, b, c, d
+
+### Suggested Class Schedule   
+0:00 - Class Start & Discuss Questions  
+0:20 – Discuss Rounding & Review Taping Corrections  
+0:30 - Start in-class assignment on taping errors  
+0:50 – Break   
+1:20 – Begin lecture on converting between US customary and System International  
+1:50 – Break    
+2:00 – Taping laboratory preparation   
+2:50 – Class Discussion   
+
+### EDM laboratory 
+The laboratory starts at 9 AM Friday at Piya Wiconi.  Please work in teams of no more than three to measure the Area 51 building including doors and the two sheds using a total station (clockwise & anti-clockwise).  
+
+Survey books and engineering scales are on order and should hopefully arrive soon.
+
+*Deliverables:*
+1. Your completed survey book should look resemble Figure B.1 (Appendix) with both calculations and a map shown.  
+
+2. Your length of stride written in the field notes of your lab. 
+
+**Due Date:** September 21, 2018 
+
+## In-class example problem answers  
+
+```{r taping-problem}
+# Calculuate errors and identify as either systematic or random for a 
+# theoretical taping lab, assuming the following
+
+# Calculations in feet.  
+# Next step is to learn to use the units package
+tape_len_std  <-  100.000          # ft 
+temp_std      <-   68.000          # deg.F 
+pull_std      <-   25.000          # lb 
+k_thermal     <-    0.00000645 # ft per deg.F 
+tape_wt       <-    0.0266     # lb/ft 
+tape_area     <-    0.0078     # in^2 
+mod_elas      <-    29E6       # lb/in^2
+
+dist_meas     <- 2280.000          # ft 
+num_sta       <-  round(dist_meas/100) # stations 
+
+tape_len_act  <-  100.004      # ft 
+temp_air      <-   78.1        # deg.F  
+pull_act      <-   35.7        # lb 
+
+# incorrect length of tape error
+error_length   <- dist_meas * (tape_len_act - tape_len_std) / 
+                                    tape_len_std
+
+# temperature error 
+error_temp     <- dist_meas * k_thermal * (temp_air - temp_std)  
+
+# pull error 
+error_pull     <- (pull_act - pull_std) * dist_meas / 
+                            (tape_area * mod_elas)  
+
+# sag error 
+error_sag1     <- -(tape_wt^2 * tape_len_act^3) / 
+                      (24 * pull_act^2)
+
+error_sag2     <- -(tape_wt^2 * 80^3) / 
+                      (24 * pull_act^2) # not a full length 
+
+error_sag      <- (num_sta - 1) * error_sag1 + error_sag2
+
+# horizontal alignment 
+dist_vert      <-    2.00  # ft  
+
+dist_horiz     <- sqrt(tape_len_act^2 - dist_vert^2) 
+
+error_align    <- -(tape_len_act - dist_horiz)  
+
+# calculate total error and error ratio
+error_total    <- error_length + error_temp + error_sag + 
+                    error_align 
+
+error_ratio    <- error_total / dist_meas # ft per ft 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Answers - the answers do not show correct number of significant  
+# figures.  Instead, they are showing 'double' precision used to 
+# store the numbers in computer memory.  
+
+# incorrect length of tape error
+error_length  
+# temperature error 
+error_temp   
+# pull error 
+error_pull  
+# sag error 
+error_sag   
+# horizontal alignment 
+error_align 
+# total error 
+error_total   
+# error ratio
+error_ratio  
+```
+

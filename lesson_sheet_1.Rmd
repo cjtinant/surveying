@@ -2,7 +2,9 @@
 title: "Lesson Plan 1"
 author: "Charles Jason Tinant"
 date: "8/29/2018"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 # Engr 233/231-Elementary Surveying Lesson Sheet
@@ -33,22 +35,9 @@ Work in groups of no more than three to:
 
 1. Complete Trigonometry handouts; 
 
-2. Set up field book following Plate B.1.  
-
-3. Calculate errors and identify as either systematic or random for a theoretical taping lab with a total distance of 2,280 ft and 8 stations, assuming the following (see section 6.14 and Appendix A):
-* actual length of tape tape used is 100.004 ft,
-* temperature is 78.1 degrees Fahrenheit;
-* pull is 35.7 lb;
-* tape was not supported throughout the survey
-* alignment for one 100-ft segment of the survey was 2.00 ft from horizontal 
-* improper plumbing of -0.01 ft for 3 segments due to strong winds 
-* faulty marking on two segments estimated as -0.020 & +0.010 ft
-* a blunder of 0.100 ft by misreading a measurement.
-
-4. Calculate the error ratio and the major source of error.
-5. What could you do to eliminate the major source of error?
-
 *Due Date:* September 7, 2018
+
+2. Set up field book following Plate B.1.  
 
 ### Suggested Class Schedule 
 0:00 - Class Start / Greetings & Discuss Syllabus 
@@ -69,64 +58,6 @@ Survey books and engineering scales are on order and should hopefully arrive nex
 
 2. Your length of stride written in the field notes of your lab. 
 
-*Due Date:* September 14, 2018 
+*Due Date:* September 21, 2018 
 
-```{r taping-problem, include=FALSE}
-# Calculuate errors and identify as either systematic or random for a 
-# theoretical taping lab, assuming the following
-
-# Calculations in feet.  
-# Next step is to learn to use the units package
-tape_len_std  <-  100          # ft 
-temp_std      <-   68          # deg.F 
-k_thermal     <-    0.00000645 # ft per deg.F 
-weight_tape   <-    0.0266     # lb/ft
-
-dist_tot      <- 2280          # ft 
-num_sta       <-  round(dist_tot/100) # stations 
-
-tape_len_act  <-  100.004      # ft 
-temp_air      <-   78.1        # deg.F  
-pull          <-   35.7        # lb 
-
-# incorrect length of tape error
-error_length   <- dist_tot * (tape_len_act - tape_len_std) / 
-                                    tape_len_std
-
-# temperature error 
-error_temp     <- dist_tot * k_thermal * (temp_air - temp_std)  
-
-# sag error 
-error_sag1     <- -(num_sta - 1) * (weight_tape^2 * tape_len_act^3) / 
-                      (24 * pull^2)
-
-error_sag2     <- -(weight_tape^2 * 80^3) / 
-                      (24 * pull^2) # not a full length 
-
-error_sag      <- error_sag1 + error_sag2
-
-# horizontal alignment 
-dist_vert      <-    2.00  # ft  
-
-dist_horiz     <- sqrt(tape_len_act^2 - dist_vert^2)
-
-error_align    <- dist_horiz - tape_len_act
-
-# plumbing errors
-error_plumb    <-   -0.01 * 3 # est for 3 segments due to strong winds 
-
-# marking errors 
-error_mark     <-   -0.020 + 0.010 # ft
-error_blunder  <-    0.100   # ft by misreading a measurement.
-
-# calculate total error and error ratio
-error_total    <- error_length + error_temp + error_sag + 
-                    error_align + error_plumb + error_mark + 
-                    error_blunder
-
-error_ratio    <- error_total / dist_tot # ft per ft 
-
-
-
-```
 
