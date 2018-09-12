@@ -1,5 +1,5 @@
 ---
-title: "Lesson Plan 2"
+title: "Lesson Plan 3"
 author: "Charles Jason Tinant"
 date: "8/29/2018"
 output:
