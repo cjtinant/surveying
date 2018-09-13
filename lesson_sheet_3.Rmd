@@ -10,6 +10,8 @@ output:
 ## Lesson 3 – Chapter 3 - Theory of Errors
 
 ### Updates
+This is an updated document with this week'ssurveying lab on property boundaries.   The reading assignment is also updated to reflect an additional reading on Surveys of Public Lands. 
+
 Homework 2 is due Friday.  Please upload the taping assignment & Chapter 2 homework to the Google Scholar website.  
 
 If you have not done so already, you will need to use your OLC account to register for class.  The class code for surveying is **2yh326**. 
@@ -32,6 +34,9 @@ Ghilani and Wolf
 Read the notes (below) that summarize the chapter
 Read section 3.20-21 on weights of observations & least squares adj.
 Scan the rest of the chapter.
+
+*Chapter 22 - Surveys of the Public Lands* 
+Scan sections 22.4, 22.5, 22.8-22.14.
   
 ### In-Class Assignment: 
 See below
@@ -54,12 +59,22 @@ Problems #: 3.2, 3.3, 3.4, 3.6, 3.15, 3.18
 2:00 – Taping laboratory preparation   
 2:50 – Class Discussion   
 
-### Surveying laboratory 
-The laboratory starts at 9 AM Friday at Piya Wiconi.  **I will be updating this assignment with laboratory notes**
+### Surveying laboratory - Survey of Public Lands
+The laboratory starts at 9 AM Friday at Piya Wiconi. I have uploaded the three resolutions for the Kyle College Center, which is on Tribal Land, to be used by Oglala Lakota College.  The resolutions provide the legal descriptions of the Kyle College Center Boundaries and some hand-drawn maps.
+
+The goal for the lab is to use Google Earth to sketch out the property boundary for the Kyle College Center.
+
+1. Download Google Earth Pro 
+https://www.google.com/earth/download/gep/agree.html 
+2. Download PLSS in Google Earth 
+http://www.metzgerwillard.us/plss/plss.html 
+3. Use the resolutions 86-45 and 9642XB to find the locations of the Kyle College Center parcels.
+4. Draw the survey boundary in Google Earth
 
 Survey books and engineering scales are on order and should hopefully arrive soon.
 
 *Deliverables:* 
+1. Printout of your sketch of the survey boundary for Kyle College Center.
 
 **Due Date:** September 21, 2018 
 
