@@ -1,0 +1,149 @@
+---
+title: "Lesson Plan 5 - Leveling Computation"
+author: "Charles Jason Tinant"
+date: "9/27/2018"
+output:
+  pdf_document: default
+---
+
+# Engr 233/231-Elementary Surveying Lesson Sheet
+## Lesson 5 – Chapter 5 - Leveling Field Proceedures & Computations
+### Updates
+
+Homework 3 is due Friday.  Please upload the assignment on leveling theory 
+
+
+(Problems #: 3.2, 3.3, 3.4, 3.6, 3.15, 3.18 ) to the Google Scholar website.  
+
+**Please meet at Kyle College Center for Friday Laboratory.**
+
+### Orientation: 
+Leveling is used by engineers and surveyors to determine differences in elevation at different points. The processes used and results are especially important to engineers in design and construction of engineering projects. 
+
+### Objectives:
+1. Students should be familiar with the definitions related to the theory of elevations and leveling. 
+2. Students should understand the historic development of NGVD29 and NAVD88. 
+3. Students should be able to calculate the impact of curvature and refraction on leveling operations. 
+4. Students should understand the theory, be able to apply the principles for gathering field data, and be able to calculate results for differential and trigonometric leveling from field or supplied data. 
+
+### Reading Assignment:  
+*Ghilani and Wolf Chapter 5 – Leveling -- Field Proceedures & Computations*  
+**Read carefully** sections 4.2, 4.5.1, 4.5.2, 4.5.4, 4.15.5  
+Read sections 4.3, 4.4, 4.5
+Scan sections on equipment  
+  
+### In-Class Assignment: 
+See below.  We will complete Example 1.1 & Example 1.2 in lab.
+
+
+### HOMEWORK ASSIGNMENT 
+**Due Date:** September 28, 2018
+**answers to selected problems are in Appendix G of the text**
+Problems 2, 6, 12, 15, 28
+
+### Suggested Class Schedule   
+0:00 - Class Start & Discuss Questions  
+0:20 – Discuss definitions on pages 70-72   
+0:40 - Discuss North American Vertical Datum  
+0:50 – Break   
+1:20 – Discuss curvature and refraction
+1:40 - Begin differential leveling discussion
+1:50 – Break    
+2:00 – Trigonometric leveling & in-class problems
+2:50 – Class Discussion   
+
+### Surveying laboratory
+We are going to look for the datum & section marker & set up some benchmarks
+
+**Preparation for lab**  
+1. See problem 4.3.  Download the benchmark for the station north of Kyle.  
+2.  Look at Figure 5.5.  This is the note form we will be using for the Friday labortory.
+
+# Lecture Notes 
+1. Spend enough time with Figure 4.1 to understand leveling terms.  
+2. Discuss the North American Vertical Datum.  
+3. Understanding **curvature** and **refraction** is the key to understanding some important surveying techniques to minimize error.  *Curvature* describes departures between a horizontal surface and a level surface that cause an upward bias in reading a change in vertical distance. *Refraction*, the bending of light, causes light rays to bend towards the surface. This light bending causes sunsets to appear red. *The longest electomagnetic rays, red in the visible spectrum, are deflected least by diffraction causing red sunsets when the sun is below the horizion.*  The effects of refraction in an elevation survey are in the opposite direction of curvature and about $1/7$ the magnitude.  The calculations to determine the effects for curvature $C_f$ and refraction $R_f$ and combined effects $h_f$ are shown below.  Note that the calculation is shown for thousands of feet, and the text provides the calculation in SI units and miles.  
+
+$$C_f = 0.0239F^2$$ 
+$$R_f = 0.0033F^2$$
+ $$h_f = 0.0206 F^2$$ 
+
+4. Differential Leveling.  Differential leveling is conducted using two equations and a setup as shown on Figure 4.5.
+
+$$ HI = elev + BS $$
+
+$$ elev = HI - FS $$ 
+
+5. Trigonometric Leveling 
+
+For distances under 1000 feet:
+$$ \Delta{elev} = hi + V - r $$ 
+
+For distances greater than 1000 feet:
+$$ \Delta{elev} = hi + V + h_{CR} - r $$ 
+
+$hi = $ instrument height 
+$r = $ rod height
+$V = \Delta{elev} + r$ 
+
+Find $V$ by trigonometry: 
+$V = S cos{z}$ 
+$V = S sin{\alpha}$  
+$V = H cot{z}$  
+$V = H tan{\alpha}$  
+
+where, 
+$S=$ slope distance 
+$z=$zenith angle 
+$\alpha=$ altitude angle 
+$H=$ horizontal distance 
+
+### Example 4.2 
+**given**
+S = slope distance of 9585.26 ft, distance from point B (uphill) to point A (downhill)
+z = zenith angle of 98 19 min 06 sec with a setup on B,  
+$\alpha =$ altitude angle of 81 42min 20sec with a setup on A,
+hi = r, so they cancel out in the equation.  
+
+**Find** 
+a) the elevation difference from B to A and  
+b) the average zenith angle for the two setups.  
+
+```{r example_4_2, message=FALSE} 
+library("tidyverse")
+# the calculations below use commands and pipes 
+# that are collectively known as the 'tidyverse'.   
+# you can download this group of packages by: 
+# install.packages("tidyverse") 
+
+library("mosaic")        # Data sets and utilities from Project MOSAIC  
+# (mosaic-web.org) used to teach mathematics, statistics, computation 
+# and modeling.  We use it for rad2deg() function
+
+# make vectors
+slope_dist   <- 9585.26                # ft 
+ang_zen      <-  98 + 19/60 + 6/3600   # changes DMS to DD  
+ang_alt      <-  81 + 42/60 + 20/3600  # changes DMS to DD  
+delt_elev_AB <- 1384.62                # ft, calculated in Exa 4.1 
+
+
+# make a dataframe from vectors & cleanup
+exa_4_2 <- data.frame(slope_dist, ang_zen, ang_alt, delt_elev_AB)  
+
+rm(slope_dist, ang_zen, ang_alt, hi, r) 
+
+# find curvature and refraction correction & change in elevation 
+exa_4_2 <- exa_4_2 %>% 
+  mutate(h_cr = 0.0206 * (slope_dist/1000 * 
+                            sin(deg2rad(ang_alt)))^2) %>% # corr fact 
+  mutate(delt_elev_BA = slope_dist * cos(deg2rad(ang_zen)) + h_cr)  
+
+# find elev diff using reciprocal angles (balances out h_cr)
+exa_4_2 <- exa_4_2 %>% 
+  mutate(ang_ave = 0.5 * (ang_zen + (180 - ang_alt))) %>% 
+  mutate(delt_elev = slope_dist * cos(deg2rad(ang_ave))) %>% 
+  mutate(delt_elev2 = 0.5 * (delt_elev_BA - delt_elev_AB))
+
+print(exa_4_2, digits = 6) 
+```
+

@@ -1,82 +1,60 @@
 ---
-title: "Lesson Plan 3"
+title: "Lesson Plan 4"
 author: "Charles Jason Tinant"
-date: "8/29/2018"
+date: "9/20/2018"
 output:
   pdf_document: default
 ---
 
 # Engr 233/231-Elementary Surveying Lesson Sheet
-## Lesson 3 – Chapter 3 - Theory of Errors
+## Lesson 4 – Chapter 4 - Chapter 4 – Leveling, Theory, Methods, and Equipment
 
 ### Updates
-This is an updated document with this week'ssurveying lab on property boundaries.   The reading assignment is also updated to reflect an additional reading on Surveys of Public Lands. 
 
-Homework 2 is due Friday.  Please upload the taping assignment & Chapter 2 homework to the Google Scholar website.  
+Homework 3 is due Friday.  Please upload the assignment on theory of errors (Problems #: 3.2, 3.3, 3.4, 3.6, 3.15, 3.18 ) to the Google Scholar website.  
 
-If you have not done so already, you will need to use your OLC account to register for class.  The class code for surveying is **2yh326**. 
 
-Recall the Law of Cosines is used to find the length of a side of a non-right triangle if two sides are known:
-	$c^2 = a^2 + b^2 – ab \cos(C)$
-	
 ### Orientation: 
-Errors occur in surveying observations due to natural, personal and instrumental sources. Additionally, errors can be systematic, constant, variable or random. Personnel may make blunders in surveying observations.
+Leveling is used by engineers and surveyors to determine differences in elevation at different points. The processes used and results are especially important to engineers in design and construction of engineering projects. 
 
 ### Objectives:
-1. Students should be familiar with the sources and types of errors that occur in surveying along with the definitions and general theory associated with analysis of error residuals. 
-2. Students should be able to calculate the error resulting from the normal error propagation in a series of surveying measurements, in a product (area), and in the mean of observations. 
-3. Students should be able to calculate descriptive statistical parameters as described in chapter 3, such as: M, $\sigma$, range, E90, E95, E50, $\sigma M$ 
-
+1. Students should be familiar with the definitions related to the theory of elevations and leveling. 
+2. Students should understand the historic development of NGVD29 and NAVD88. 
+3. Students should be able to calculate the impact of curvature and refraction on leveling operations. 
+4. Students should understand the theory, be able to apply the principles for gathering field data, and be able to calculate results for differential and trigonometric leveling from field or supplied data. 
 
 ### Reading Assignment:  
-Ghilani and Wolf  
-*Chapter 3 – Theory of Errors in Observation*   
-Read the notes (below) that summarize the chapter
-Read section 3.20-21 on weights of observations & least squares adj.
-Scan the rest of the chapter.
-
-*Chapter 22 - Surveys of the Public Lands* 
-Scan sections 22.4, 22.5, 22.8-22.14.
+*Ghilani and Wolf Chapter 4 – Leveling, Theory, Methods, and Equipment*  
+**Read carefully** sections 4.2, 4.5.1, 4.5.2, 4.5.4, 4.15.5  
+Read sections 4.3, 4.4, 4.5
+Scan sections on equipment  
   
 ### In-Class Assignment: 
 See below
 
 
 ### HOMEWORK ASSIGNMENT 
-**Due Date:** September 21, 2018
+**Due Date:** September 28, 2018
 **answers to selected problems are in Appendix G of the text**
-Problems #: 3.2, 3.3, 3.4, 3.6, 3.15, 3.18 
-
-
+Problems 2, 6, 12, 15, 28
 
 ### Suggested Class Schedule   
 0:00 - Class Start & Discuss Questions  
-0:20 – Discuss Rounding & Review Taping Corrections  
-0:30 - Start in-class assignment on taping errors  
+0:20 – Discuss definitions on pages 70-72   
+0:40 - Discuss North American Vertical Datum  
 0:50 – Break   
-1:20 – Begin lecture on converting between US customary and System International  
+1:20 – Discuss curvature and refraction
+1:40 - Begin differential leveling discussion
 1:50 – Break    
-2:00 – Taping laboratory preparation   
+2:00 – Trigonometric leveling & in-class problems
 2:50 – Class Discussion   
 
-### Surveying laboratory - Survey of Public Lands
-The laboratory starts at 9 AM Friday at Piya Wiconi. I have uploaded the three resolutions for the Kyle College Center, which is on Tribal Land, to be used by Oglala Lakota College.  The resolutions provide the legal descriptions of the Kyle College Center Boundaries and some hand-drawn maps.
+### Surveying laboratory
+We are going to look for the datum & section marker & set up some benchmarks
 
-The goal for the lab is to use Google Earth to sketch out the property boundary for the Kyle College Center.
+Preparation for lab.  
+1. See problem 4.3.  Download the benchmark for the station north of Kyle.  
 
-1. Download Google Earth Pro 
-https://www.google.com/earth/download/gep/agree.html 
-2. Download PLSS in Google Earth 
-http://www.metzgerwillard.us/plss/plss.html 
-3. Use the resolutions 86-45 and 9642XB to find the locations of the Kyle College Center parcels.
-4. Draw the survey boundary in Google Earth
-
-Survey books and engineering scales are on order and should hopefully arrive soon.
-
-*Deliverables:* 
-1. Printout of your sketch of the survey boundary for Kyle College Center.
-
-**Due Date:** September 21, 2018 
 
 ```{r setup, message=FALSE}
 library("tidyverse")  # the calculations below use commands and pipes
@@ -86,262 +64,13 @@ library("tidyverse")  # the calculations below use commands and pipes
 ```
 
 # Lecture Notes 
-The title of this chapter is "theory of errors in observations".  I think a more appropriate title would be "theory of uncertainty in measurement". 
-
-Two types of observations: *direct*, like applying a tape to a line or turning an angle with a total station, and *indirect* observations, which are determined by thier (the indirect observation) relationship to other observed values.  In other words, indirect observations are calculated rather than observed. 
-
-Every measurement has errors.  This is expressed mathmatically as: 
-$$ E = X - \bar{X} $$
-$E$ is the error (uncertainty) in an observation,
-$X$ is the observed value,  
-$\bar{X}$ is the true value.
-
-However,
-1. no observation is exact,
-2. every observation contains uncertainty, 
-3. the true value is never known, and therefore, 
-4. the exact error in a measurement is always unknown.  
-
-Following good field protocol & watching for mistakes can substantially reduce the magnitude of errors.  
-
-*Mistakes* (blunders) are different than errors, and they are hard (impossible) to correct for.     If you detect a mistake, it is best to redo the observation.
-
-See Figure 3.1 and note that you can be *precisely inaccurate*. 
-
-*Systematic* errors called **biases** are errors like too short (long) a tape.  Other errors are *random errors* that are beyond the control of the observer and follow the laws of probability.
-
-## Most probable value
-Although we don't know the true value of a quantity, we can make a best guess.  A *most probable value* can be estimated by *redundant observations*.  The way to calculate the most probable value is to make several independant observations.  Then we calculate the *arithmetic mean* 
-
-*I don't particularly like the text's use of $\bar{M}$ for the mean.  However, I am going with the variables chosen by the author*.  
-
-The most probable value is calculated as: 
-
-$$ \bar{M} = \frac{\Sigma{M}}{n} $$
-
-$\bar{M}$ is the most probable value (the mean), 
-$\Sigma{M}$ is the sum of individual measurements (observations),
-$n$ is the total number of observations.  
-
-The uncertainty (error) is calculated from *residuals*, differences between the most probable value and observations.  Residuals are theoretically identical to errors (uncertainty), *but* we use different words because we don't know the true value, so we can't know the precise value of the error.
-
-Some ways to understand random errors are to graph the residuals by thier *frequency of occurrance* with a *histogram*. If the residuals are errors rather than mistakes (blunders), the histogram should fit a *bell curve* or *Normal distribution*.  Having a normal distribution is super useful, since we can know a lot about the likelihood (probability) of errors.
-
-Some general things to consider about probabality:   
-1. Small residuals (errors) occur more often than large errors, 
-2. Large (errors) occur infrequently (less probable), and unusually large errors may be mistakes rather than errors.  
-3.  Positive and negative errors happen with equal frequency (equally probable).
-
-## Precision 
-The most basic approach to understanding the precision of measurements is by calculating the *range* of measurements by subtracting the maximum measurement from the minimum measurement.
-
-Some more useful measures for dispersion (precision) of measurements are the *variance* and *standard deviation*.  The standard deviation, which is the square root of the variance, is calcuated as: 
-
-$$ \sigma = \pm\sqrt{\frac{\Sigma{\nu}^2}{n-1}}$$
-
-where:
-$\sigma$ = standard deviation 
-$\nu$ = the residual of an observation 
-$n$ = number of observations.
-
-The standard deviation of a normal curve has some interesting properties.  One standard deviation contains 68.27% of residuals (34.14% positive and 34.14% negative).  Two standard deviations contains 95% of residuals, and three standard deviations ($3\sigma$) contains 99.7% of observations.  The $3\sigma$ is often used to estimate whether a particular observation is an error or a mistake.
-
-The probability (likelyhood) of an error occurring can be calcuated from standard deviation.  These *percentage errors* are used to determine the precision of a particular survey.  Some common percentage errors used in surveying are: 
-
-$E_{50}$ or 50% error, the *probable error*,
-$E_{90}$ or 90% error, and 
-$E_{95}$ or 95% error, called the *$2\sigma$* error (but is a little smaller).  
-
-The relationship between probability and standard deviation is shown on Figure 3.5.  The general equation to calculate these errors is: 
-
-$$ E_p = C_p\sigma$$ 
-
-The common percentage errors can be calculated using: 
-
-$$E_{50} = 0.6745\sigma$$ 
-$$E_{90} = 1.6449\sigma$$
-$$E_{95} = 1.9599\sigma$$
-
-
-## Group In-Class Problem
-Work together to complete Example 3.1 questions of:
-1. Most probable line length, 
-2. Standard Deviation (often written as 'SD', 
-3. Errors for 50%, 90%, and 95% probability.  
-
-```{r Exa1_a} 
-# Imagine a line has been measured 10 times.  Results are below.
-# create a data table  
-Exa1 <- as.data.frame(c(57, 39, 37, 39, 48, 49, 33, 46, 47, 55)) %>%  
-# this is for the hundreths of the length(the whole numbers are same) 
-  rename(length_ft = 1) %>% 
-  transmute(length_ft = 538 + length_ft/100) %>% 
-  mutate(mean_length = mean(length_ft)) %>% 
-  mutate(residual = mean_length - length_ft) %>% 
-  mutate(resid_sq = residual^2) %>% 
-  select(-mean_length) 
-
-print(Exa1)  
-```
-
-```{r Exa1_b}
-# Find the most probable value (mean), standard deviation,  
-# 50% probability error, 90% probability error, 95% probability error  
-
-Exa1_summary <- Exa1 %>%  
-  summarize(mean = mean(length_ft),  
-           sum(residual), 
-           sum(resid_sq), 
-           stdev = sd(residual), 
-           n = n()) %>% 
-  mutate(E50 = 0.6745 * stdev) %>% 
-  mutate(E90 = 1.6449 * stdev) %>% 
-  mutate(E95 = 1.9599 * stdev) 
-
-
-print(Exa1_summary, digits = 2)
-```
-
-## Error Propogation
-
-All direct observations contain errors, so all indirect observations likewise contain errors.  We use *error propogation* to calculate these errors.
-
-### Error of a sum and error of a series 
-We can estimate the error of a sum by the following equation:
-
-$$ E_{sum} = \pm\sqrt{E_a^2+E_a^2+E_a^2+\dots}$$
-
-The error of a series means that you have the same error each time.  Because the random errors of a series tend to balance out, the resulting error is proportional to the square-root of the number of observations.  The equation above simplifies to:
-
-$$ E_{series} = \pm E\sqrt{n}$$
-
-## Group In-Class Problems.
-Work together to complete Examples 3.2 - 3.4 & 3.6:
-1. Error of a sum (Exa 3.2),  
-2. Error of a series (Exa 3.3) for angular misclosure (new words!),  
-3. Error of a series (Exa 3.4) for permissible taping errors,  
-4. Error of a product (Exa 3.6) for errors for the error in calculating the area of a rectangular lot.  
-
-```{r Exa3.2} 
-# A line is observed in three sections (below).  Find the total length  
-# & anticipated standard deviation 
-
-# make dataframe 
-length_ft <- c(753.81, 1238.4, 1062.95) 
-sigma  <- c(0.012, 0.028, 0.020) 
-
-Exa2   <- data.frame(length_ft, sigma) 
-
-rm(length_ft, sigma) 
-
-# find total length 
-Exa2 <- Exa2 %>% 
-  mutate(sigma_sq = sigma^2) 
-
-Exa2_summary <- Exa2 %>% 
-  summarize(lenth_total = sum(length_ft), 
-            error_anticip = sqrt(sum(sigma_sq))) 
-  
-print(Exa2_summary, digits = 2) 
-```
-
-```{r Exa3.3}
-# Find the error of a series for angles on a closed four-sided traverse.  
-# The angular errors are estimated to be 
-#   +/- 3.5 seconds (not inches! -- I made this mistake...)
-
-# make dataframe
-error_angle_sec <- 3.5       # seconds 
-error_dist_ft  <- 0.02      # feet 
-num_angles     <- 4         # measurements 
-dist_total     <- 5000      # feet 
-
-Exa3 <- data.frame(error_angle_sec, error_dist_ft, num_angles, 
-                   dist_total) 
-
-rm(error_angle_sec, dist_total, error_dist_ft, num_angles) 
-
-# find errors from angular mismeasurement 
-Exa3_error <- Exa3 %>% 
-  as.tibble %>% 
-mutate(E_series_angle_sec = error_angle_sec * sqrt(num_angles)) 
-print(Exa3_error, digits = 2)
-```
-
-```{r Exa 3.4}
-# A distance (below) needs to be taped to some accuracy.  How much 
-# accuracy is needed for each 100-ft tape length? 
-
-# make data frame 
-E_series <- 0.10             # feet 
-n_meas   <- 1000/100   # total lenth (ft) over tape_lenth (ft) 
-
-Exa4 <- data.frame(E_series, n_meas) 
-
-rm(E_series, n_meas) 
-
-Exa4 <- Exa4 %>% 
-  as.tibble() %>% 
-  mutate(error_allowed = E_series / sqrt(n_meas))
-
-print(Exa4, digits = 2)
-
-```
-Note: round answer to nearest hundredth.
-
-### Error of a product 
-We multiply lenth times width to find area.  These errors are *errors of a product*.  See figure 3.6.  We can find the error of a product by:
-
-$$ E_{prod} = \pm\sqrt{A^2E_b^2+B^2E^2_a}$$
-
-```{r Exa3.6}
-# A rectangular lot shown in figure 3.6 has dimensions as shown below.
-# Calculate the parcel (lot) area and estimated 95% error of the area.  
-
-side_A <- 252.46     # ft  
-side_B <- 605.08     # ft 
-E95_a  <- 0.053      # ft  
-E95_b  <- 0.072      # ft  
-
-Exa6 <- data.frame(side_A, side_B, E95_a, E95_b)  
-
-rm(side_A, side_B, E95_a, E95_b)  
-
-Exa6 <- Exa6 %>% 
-  mutate(area = side_A * side_B) %>% 
-  mutate(E95_area = sqrt(side_A^2 * E95_b^2 + side_B^2 * E95_a^2)) 
-
-print(Exa6, digits = 3)
-```
-
-### Error of the mean 
-The *error of the mean* refers to the precision of the estimate of the most probable value.  The equation below is used to estimate the expected error for any particular observation 
-
-$$ E_{mean} = \pm \frac{E}{\sqrt{n}}$$
-
-In surveying, we are often more interested in the precision of our estimate of the mean at a particular probability.  This is called the *standard deviation of the mean*.  Some common standard deviations of the mean for surveying are given below: 
-
-$$(E_{68})_m = \frac{\sigma}{\sqrt{n}} = \pm\sqrt{\frac{\Sigma{\nu}^2}{n(n-1)}}$$ 
-$$(E_{90})_m = \frac{E_{90}}{\sqrt{n}} = \pm 1.6449 \sqrt{\frac{\Sigma{\nu}^2}{n(n-1)}}$$ 
-$$(E_{95})_m = \frac{E_{95}}{\sqrt{n}} = \pm 1.9599\sqrt{\frac{\Sigma{\nu}^2}{n(n-1)}}$$ 
-
-The equations above show that *to reduce your error by 50% you need to make four times the number of observations*
-
-## Group In-Class Problem.
-Work together to complete Example 3.6:
-1. Standard deviation of the mean, 
-2. 90% error of the mean. 
-```{r Exa7}
-# Use observations from Example 1. 
-
-Exa7 <- Exa1_summary %>%  
-  select(-(2:3)) %>% 
-  select(-(4:6)) %>% 
-  mutate(sigma_m = stdev / sqrt(n)) %>% 
-  mutate(E90_m = 1.6449 * sigma_m) 
-
-print(Exa7, digits = 2)
-```
+1. Spend enough time with Figure 4.1 to understand leveling terms.  
+2. Discuss the North American Vertical Datum.  
+3. Understanding **curvature** and **refraction** is the key to understanding some important surveying techniques to minimize error.  *Curvature* describes departures between a horizontal surface and a level surface that cause an upward bias in reading a change in vertical distance. *Refraction*, the bending of light, causes light rays to bend towards the surface. This light bending causes sunsets to appear red. *The longest electomagnetic rays, red in the visible spectrum, are deflected least by diffraction causing red sunsets when the sun is below the horizion.*  The effects of refraction in an elevation survey are in the opposite direction of curvature and about $1/7$ the magnitude.  The calculations to determine the effects for curvature $C_f$ and refraction $R_f$ and combined effects $h_f$ are shown below.  Note that the calculation is shown for thousands of feet, and the text provides the calculation in SI units and miles.  
+
+$$C_f = 0.0239F^2$$ 
+$$R_f = 0.0033F^2$$
+ $$h_f = 0.0206 F^2$$ 
 
 
 

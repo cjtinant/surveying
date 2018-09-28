@@ -1,0 +1,156 @@
+---
+title: "Lesson Plan 5 - Leveling Computation"
+author: "Charles Jason Tinant"
+date: "9/27/2018"
+output:
+  pdf_document: default
+---
+
+# Engr 233/231-Elementary Surveying Lesson Sheet
+## Lesson 5 – Chapter 5 - Leveling Field Proceedures & Computations
+### Updates
+
+Homework 4 is due Friday.  Please upload the Chapter 4 assignment on leveling theory to the Google Scholar website.  
+
+**Please meet at Kyle College Center for Friday Laboratory.**
+
+### Orientation: 
+Leveling is used by engineers and surveyors to determine differences in elevation at different points. Differential, profile and three-wire (stadia) leveling are the basis for developing engineering projects.  The processes used, adjustment of errors, balancing of data and results are especially important to engineers in design and construction of engineering projects. 
+
+### Objectives:
+1. Students should be familiar with the definition of precision for a level surveys and be able to calculate and apply allowable misclosure.
+2. Students should be able to adjust and balance a level circuit.
+3. Students should be familiar with sources of error for level surveys.
+4. Students should understand field proceedures for leveling and perform associated calculations. 
+
+### Reading Assignment:  
+*Ghilani and Wolf Chapter 5 – Leveling -- Field Proceedures & Computations*  
+**Read carefully** sections 5.4:5.7
+Read 5.9, 5.12:5.14  
+Scan sections on 5.1:5.3, 5.10:5.12, 5.15
+  
+### In-Class Assignment: 
+We will go through calculations for Figure 5.5.
+
+
+### HOMEWORK ASSIGNMENT 
+**Due Date:** October 5, 2018
+**answers to selected problems are in Appendix G of the text**
+Chapter 5 problems 1, 2, 3, 5, 8, 12
+
+### Suggested Class Schedule   
+0:00 - Class start & discuss questions  
+0:20 – Review leveling theory 
+0:40 - Discuss stadia
+0:50 – Break   
+1:20 – Discuss allowable precision
+1:40 - Discuss setting up a level circuit in the field
+1:50 – Break    
+2:00 – Differential leveling calculations - figure 5.5 
+2:40 - Other types of leveling proceedures
+2:50 – Class feedback   
+
+### Surveying laboratory
+We are going to complete a leveling circuit on the benchmarks we installed last week.  
+
+**Preparation for lab**  
+Look at Figure 5.5.  This is the note form we will be using for the Friday labortory.
+
+**Follow-up for using a total station for leveling** Since we are not using a stadia rod, I think we can use the zero-button to set the zero height on the instrument and add a constant to make a vertical stadia reading for each station:
+1. Set the instrument height to zero. 
+2. Record the VD reading in the fieldbook
+3. Add 5.000 to the VD reading in the cell below 
+
+*Example:* After setting instrument height to zero the BS is -1.113 and the FS is 1.226.    
+The adjusted BS is thus $-1.113 + 5.000 = 3.887$.  
+The adjusted FS is thus $1.226 + 5.000 = 6.226$.  
+
+The survey notes for the differential level with a total station will look like this:  
+
+| STA | BS     |      HI  | FS    | ELEV     | ADJ ELEV | 
+| --- | ------ | -------- | ----- | -------- | -------- |
+| BM1 | -1.113 |          |       | 1000.000 | 1000.000 | 
+|     | 3.887  | 1003.887 |       |          |          |
+| BM2 |        |          | 1.226 |          |          | 
+|     |        |          | 6.226 | 997.661  |          |
+
+# Lecture Notes 
+1. Briefly discuss stadia and why the equation for stadia optics reduces down to $D = KI$, where   
+D = distance from instrument center to rod face, 
+K = stadia interval factor (usually set to 100 by manufacturer),
+I = stadia interval, also called rod intercept.  
+
+2. See Figure 5.7. Following leveling proceedures to balance plus and minus sight distances will eliminate error by instrumentation, curvature and refraction.  
+
+3. Review Figure 5.5 and go through differential leveling calculations. 
+Differential leveling is conducted using two equations and a setup as shown on Figure 4.5.
+
+$$ HI = elev + BS $$ 
+
+$$ elev = HI - FS $$ 
+
+4. Note how the **bench mark** is described in the field book.  The text suggests using one word to describe the benchmark or a series of numbers in more extensive projects.  Benchmarks are described in sufficient detail so that another person unfamiliar with the project can   **Turning points** are also numbered consecutively but are not described in detail.  
+
+5. Leveling should always be checked by running closed circuits or loops.  The **key point** in leveling is that, *when completing a circuit, or traversing from benchmark to benchmark, the algebraic sum of the plus and minus sites applied to the first elevation will give the last elevation.*  Therefore, **page checks** are conducted before leaving the field to check for mistakes.
+
+If a starting benchmark has elevation information, then all of the intermediate points along the circuit will carry that information.  If elevation is not known, then an assumed value is used that can be converted to a datum later by the addition of a constant.  
+
+6. **Loop misclosure** is the amount of difference between the final elevation and the initial elevation.  Loop misclosure is termed **section misclosure** when a transit is between two benchmarks.  Note that you need to do at least two instrument setups when making a level circuit run between two benchmarks. *Consider why, and if you have difficulty then check page 109 paragraph 4.*.
+
+7. **Precision** is increased by repeating observations, making frequent ties to known benchmarks, using and maintaining quality equipment, and making careful measurements.  However, errors always occur -- see sections 5.12 & 5.13 for a list of different errors and mistakes.  The Geodedic Committee recommended calculation for **allowable misclosure** is:
+
+$$C=m\sqrt{K}$$
+C = allowable loop or section misclosure **in mm**, 
+m = constant referring to the class of survey (see pg 110 of text), 
+K = total length leveled **in km**
+
+Another approach is to use the number of setups (n) to calculate permissible misclosure.  For instance, if setups are spaced 400 feet apart approximately 8.2 setups then C for a second-order class II leveling survey is found by rearranging the equation above.  The '8' in the equation below is the second-order class II leveling survey constant.  The constant would be 12 for a third-order survey (page 110).  
+
+$$C=\frac{8}{\sqrt{8.2}}\sqrt{n}$$
+
+For construction surveys the following **allowable misclosure** formula is used with $n$ as the number of setups and $C$ in decimal feet:
+$$C=0.02\sqrt{n}$$
+
+### Some things to consider when setting up a leveling circuit:
+* Equalize BS and FS distances by pacing or horizontal distance check, 
+* Use physical objects for TP, set chaining pins or use chalk, 
+* *Always check the balance of +/- shots before leaving the field* -- **page check** $\Sigma{BS} = \Sigma{FS}$ for a closed traverse loop.  
+
+```{r example_4_2,include=FALSE,message=FALSE} 
+library("tidyverse")
+# the calculations below use commands and pipes 
+# that are collectively known as the 'tidyverse'.   
+# you can download this group of packages by: 
+# install.packages("tidyverse") 
+
+library("mosaic")        # Data sets and utilities from Project MOSAIC  
+# (mosaic-web.org) used to teach mathematics, statistics, computation 
+# and modeling.  We use it for rad2deg() function
+
+# make vectors
+slope_dist   <- 9585.26                # ft 
+ang_zen      <-  98 + 19/60 + 6/3600   # changes DMS to DD  
+ang_alt      <-  81 + 42/60 + 20/3600  # changes DMS to DD  
+delt_elev_AB <- 1384.62                # ft, calculated in Exa 4.1 
+
+
+# make a dataframe from vectors & cleanup
+exa_4_2 <- data.frame(slope_dist, ang_zen, ang_alt, delt_elev_AB)  
+
+rm(slope_dist, ang_zen, ang_alt, hi, r) 
+
+# find curvature and refraction correction & change in elevation 
+exa_4_2 <- exa_4_2 %>% 
+  mutate(h_cr = 0.0206 * (slope_dist/1000 * 
+                            sin(deg2rad(ang_alt)))^2) %>% # corr fact 
+  mutate(delt_elev_BA = slope_dist * cos(deg2rad(ang_zen)) + h_cr)  
+
+# find elev diff using reciprocal angles (balances out h_cr)
+exa_4_2 <- exa_4_2 %>% 
+  mutate(ang_ave = 0.5 * (ang_zen + (180 - ang_alt))) %>% 
+  mutate(delt_elev = slope_dist * cos(deg2rad(ang_ave))) %>% 
+  mutate(delt_elev2 = 0.5 * (delt_elev_BA - delt_elev_AB))
+
+print(exa_4_2, digits = 6) 
+```
+
