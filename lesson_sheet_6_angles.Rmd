@@ -1,0 +1,173 @@
+---
+title: "Lesson Plan 6 - Angles, Azimuths & Bearings"
+author: "Charles Jason Tinant"
+date: "10/04/2018"
+output:
+  pdf_document: default
+---
+
+# Engr 233/231-Elementary Surveying Lesson Sheet
+## Lesson Plan 6 - Chapter 7 - Angles, Azimuths & Bearings
+
+## Midterm Exam Overview  
+The midterm exam over Lesson sheets 1-5 will be uploaded next week.  The midterm is take home and open note, open book, open internet, but not open neighbor.  No additional homework will be assigned the week of the exam.  
+
+*Midterm learning objectives*  
+1. Students should be able calculate and convert data from US customary and System International data.  
+2. Students should be able to convert historic land measurement data to current systems.   
+3. Students should apply trigonometric functions to surveying including the Law of Cosines and the Law of Sines.  
+4. Students should be familiar with the sources and types of errors that occur in surveying along with the definitions and general theory associated with analysis of error residuals.  
+5. Students should be able to calculate the error resulting from the normal error propagation in a series of surveying measurements, in a product (area), and in the mean of observations.   
+6. Students should be able to calculate descriptive statistical parameters as described in chapter 3, such as: M(mean), $\sigma$, $\sigma M$, range, E90, E95, E   
+7. Students should be familiar with the definitions related to the theory of elevations and leveling.   
+8. Students should understand the historic development of NGVD29 and NAVD88.   
+9. Students should be able to calculate the impact of curvature and refraction on leveling operations.   
+10. Students should understand the theory, be able to apply the principles for gathering field data, and be able to calculate results for differential and trigonometric leveling from field or supplied data.   
+11. Students should be familiar with the definition of precision for a level survey and be able to calculate and apply allowable misclosure.   
+12. Students should be able to apply the calculations to adjust and balance a level circuit.   
+13. Students should be familiar with the sources of error in level surveys.  
+14. Students should understand field procedures for stadia and profile leveling operations and be able to perform associated calculations.   
+
+**Please meet at Kyle College Center for Friday Laboratory.**
+
+\newpage  
+### Orientation: 
+Surveyors and engineers need to consider the use of horizontal angles to complete the spatial orientation of the points and lines used to develop and implement engineering and public works projects. 
+
+### Objectives: 
+1. Students should understand the importance of and the application of a reference line, direction of angle turning, and angular distance in engineering surveying. 
+2. Students should be able distinguish the differences between angles to the right, deflection angles, and interior angles and apply them to calculations for completing closed traverses. 
+3. Students should be familiar with definitions of azimuths and bearings; and be able to calculate angles from azimuths and bearings and vice versa; and be able to convert between the two systems of angular definition. 
+
+### Reading Assignment:  
+*Ghilani and Wolf Chapter 7 - Angles, Azimuths & Bearings*  
+
+**Read carefully** sections 7.3, 7.4, 7.6-7.8  
+Read sections  7.1, 7.5  
+Scan sections 7.2  
+  
+### In-Class Homework:
+*for credit - upload to Google Scholar - due Oct 12*  
+I have uploaded solutions to the problems below as part of the notes.
+
+1.  For the polygon shown in Figure 7.2a--a) sum internal angles, 2) find bearings for each of the line segments, 3) calculate azimuths from the bearings.
+
+*Traverse measurements*
+1. Set up on B with backsight onto **reference line** with a bearing of $N41^\circ 35^\prime E$ and turn an *angle to the right* of $129^\circ 15^\prime$  
+2. Set up on C with backsight onto B and turn an *angle to the right* of $88^\circ 35^\prime$  
+3. Set up on D with backsight onto C and turn an *angle to the right* of $132^\circ 30^\prime$   
+4. Set up on E with backsight onto D and turn an *angle to the right* of $135^\circ 42^\prime$  
+5. Set up on F with backsight onto E and turn an *angle to the right* of $118^\circ 52^\prime$  
+6. Set up on A with backsight onto A and turn an *angle to the right* of $115^\circ 10^\prime$  
+
+2.  For the polygon described in the traverse measurements below: a) sketch the polygon, b) sum internal angles, c) find bearings for each of the line segments, d) calculate bearings from the azimuths.
+
+*Traverse measurements*  
+1. Set up on A with backsight onto **reference line** with an azimuth of $0^\circ 0^\prime 0^{\prime \prime}$ and turn an *angle to the right* of $93^\circ 27^\prime 28^{\prime \prime}$   
+2. Set up on B with backsight onto B and turn an *angle to the right* of $141^\circ 54^\prime 07^{\prime \prime}$   
+3. Set up on C with backsight onto C and turn an *angle to the right* of $103^\circ 33^\prime 44^{\prime \prime}$   
+4. Set up on D with backsight onto D and turn an *angle to the right* of $98^\circ 35^\prime 15^{\prime \prime}$   
+5. Set up on E with backsight onto E and turn an *angle to the right* of $102^\circ 29^\prime 36^{\prime \prime}$   
+
+```{r message=FALSE, include=FALSE}
+library(tidyverse)
+# Measured interior angles 
+ang_B <- c(129, 11)
+ang_C <- c(88, 35)
+ang_D <- c(132, 30) 
+ang_E <- c(135, 42)
+ang_F <- c(118, 52)
+ang_A <- c(115, 10) 
+
+traverse_chk <- data.frame(ang_B, ang_C, ang_D, ang_E, ang_F, ang_A) %>% 
+  t() %>% 
+  data.frame() %>% 
+  rename(degrees = X1) %>% 
+  rename(minutes = X2) %>%
+  mutate(sum_min = sum(minutes)) %>% 
+  mutate(sum_deg = sum(degrees)) %>% 
+  mutate(total = sum_deg + sum_min/60)
+
+```
+
+<!--
+### HOMEWORK ASSIGNMENT 
+**Due Date:** October 5, 2018
+**answers to selected problems are in Appendix G of the text**
+Chapter 5 problems 1, 2, 3, 5, 8, 12
+
+READING ASSIGNMENT: Ghilani and Wolf, Sections 4.1 – 4.3, 7.5 - 7.9, 7.16 
+
+### Suggested Class Schedule   
+0:00 - Class start & discuss questions  
+0:20 – Review leveling theory 
+0:40 - Discuss stadia
+0:50 – Break   
+1:20 – Discuss allowable precision
+1:40 - Discuss setting up a level circuit in the field
+1:50 – Break    
+2:00 – Differential leveling calculations - figure 5.5 
+2:40 - Other types of leveling proceedures
+2:50 – Class feedback   
+--> 
+
+### Surveying laboratory
+We are going to *for reals* complete a leveling circuit on the benchmarks we installed last week (see below for instructions on how to set up your field book.  
+
+**Preparation for lab**  
+Look at Figure 5.5.  This is the note form for stadia.  Since we are not using a stadia rod, we will set the zero height on the instrument and add a constant to make a vertical stadia reading for each station by:
+1. Set the instrument height to zero. 
+2. Record the VD reading in the fieldbook
+3. Add 5.000 to the VD reading in the cell below 
+
+*Example:* After setting instrument height to zero the BS is -1.113 and the FS is 1.226.    
+The adjusted BS is thus $-1.113 + 5.000 = 3.887$.  
+The adjusted FS is thus $1.226 + 5.000 = 6.226$.  
+
+The survey notes for the differential level with a total station will look like this:  
+
+| STA | BS     |      HI  | FS    | ELEV     | ADJ ELEV | 
+| --- | ------ | -------- | ----- | -------- | -------- |
+| BM1 | -1.113 |          |       | 1000.000 | 1000.000 | 
+|     | 3.887  | 1003.887 |       |          |          |
+| BM2 |        |          | 1.226 |          |          | 
+|     |        |          | 6.226 | 997.661  |          |
+
+# Lecture Notes 
+###Introduction  
+Horizontal angles and directions are used to determine the location of points and orientation of lines.  In the past--transits, theodolites, and compasses used to observe angles in the field, usually as bearings.  Today--total stations are used, and angles are measured as azimuths
+
+Requirements to determine an angle:  
+1. Reference line--where you start to measure from?  
+2. Turning direction--are your going clockwise or counterclockwise?   
+3. Angular distance--how much of an angle did you turn?  
+
+###Angular measurement units  
+We use *sexagesimal system* units in the US--degrees, minutes, seconds.
+In Europe *grads* or *gons* are used-- 400 grad = 360 degrees.
+
+###Horizontal angle types
+Four kinds of horizontal angles in surveying:
+1. interior angles 
+2. angles to the right 
+3. deflection angles
+4. exterior angles (complement to interior angles to check for errors)  
+
+**Interior angles** 
+Polygons, a.k.a closed traverses, have interior angles.
+
+$$\Sigma{angle_{interior}} = (n-2) \times 180^\circ$$
+
+$$ angle_{interior} + angle_{exterior} = 360^\circ $$
+
+**Angles to the right**
+Measured clockwise *from the rear to the forward station*.
+
+**If your closed traverse is counterclockwise then angles to the right are interior angles**
+
+*Deflection angles*
+Used in long linear alignments in route surveys.  Plus angles are to the right and minus angles are to the left.  The sum of deflection angles equals $360^\circ$.  
+
+
+
+
